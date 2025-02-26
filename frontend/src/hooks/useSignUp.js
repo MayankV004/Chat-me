@@ -39,11 +39,11 @@ export const useSignUp = () => {
       if (data.error) {
         throw new Error(data.error);
       }
-      console.log(data);
-      //Localstorage
+    
+      
       localStorage.setItem("chat-user" , JSON.stringify(data));
-      //context
       setAuthUser(data);
+      
       toast.success("Account created successfully");
     } catch (error) {
       toast.error(error.message);

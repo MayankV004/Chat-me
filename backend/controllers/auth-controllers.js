@@ -38,7 +38,7 @@ export const signup = async (req , res)=>{
             res.status(201).json({
                 _id: newUser._id,
                 fullname : newUser.fullname,
-                username : newUser.profilePic
+                username : newUser.username
             })
         }else{
             res.status(400).json({
@@ -73,10 +73,10 @@ export const login =async (req , res)=>{
 		});
 
       } catch (error) {
-        res.status(400).json({
-            status : "failed",
-            message : error.message
-        })
+            res.status(400).json({
+                status : "failed",
+                message : error.message
+            })
       }
 }
 

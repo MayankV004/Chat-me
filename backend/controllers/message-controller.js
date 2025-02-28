@@ -33,7 +33,7 @@ export const sendMessage = async(req,res)=>{
         }
         await Promise.all([convo.save(),newMessage.save()]) // faster and run in parallel
 
-        res.status(201).json({message : newMessage})
+        res.status(201).json(newMessage)
 
     } catch (error) {
         res.status(400).json({
@@ -55,7 +55,7 @@ export const getMessages = async(req, res)=>{
         if(!convo) return res.status(200).json([]);
         const messages = convo.messages
 
-        res.status(201).json({message : messages})
+        res.status(201).json(messages)
     } catch (error) {
         res.status(400).json({
             status : "failed",

@@ -18,7 +18,7 @@ function Login() {
           <span className="text-blue-500"> ChatMe</span>
         </h1>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off" className="space-y-1">
           <div>
             <label className="label">
               <span className="text-base label-text">Username</span>

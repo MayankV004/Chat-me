@@ -5,11 +5,11 @@ import authRoutes from "./routes/auth-routes.js";
 import messageRoutes from "./routes/message-routes.js";
 import userRoutes from "./routes/user-routes.js";
 import connectDB from "./config/mongoose-connection.js";
-import crypto from "crypto"
+import { app , server} from "./socket/socket.js";
 
 //--------------------------------------------Variables-----------------------------------
 
-const app = express();
+
 const PORT = process.env.PORT || 5000;
 
 //--------------------------------------------Middlewares---------------------------------
@@ -29,7 +29,7 @@ app.use("/api/users", userRoutes)
 
 
 
-app.listen(PORT, ()=>{
+server.listen(PORT, ()=>{
     connectDB();
     console.log(`Server running on port ${PORT}`)
 })

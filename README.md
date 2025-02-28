@@ -14,7 +14,7 @@ Chat Me is a modern real-time messaging application built with React, Node.js, a
 - **Online Status**: Real-time user online/offline status
 - **Message History**: Persistent chat history
 - **Modern UI**: Clean and intuitive interface using Tailwind CSS
-- **Emojis Support**: Express yourself with emoji reactions
+
 
 ## 🛠️ Tech Stack
 

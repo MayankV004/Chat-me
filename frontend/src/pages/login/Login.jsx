@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../../hooks/useLogin.js";
-
+import { motion } from "motion/react"
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -11,7 +11,13 @@ function Login() {
     await login(username, password );
   };
   return (
-    <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
+    <motion.div className="flex flex-col items-center justify-center min-w-96 mx-auto" initial={{ opacity: 0, scale: 0.9, y: 30 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    transition={{
+      duration: 0.8,
+      ease: [0.43, 0.13, 0.23, 0.96],
+      delay: 0.1,
+    }}>
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400/20 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100">
         <h1 className="text-3xl font-semibold text-center text-gray-300 mb-5">
           Login
@@ -62,7 +68,7 @@ function Login() {
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -20,8 +20,8 @@ function MessageContainer() {
         <>
           {/* Header */}
           <div className="bg-slate-500/10 px-4 py-2 mb-2 flex gap-1">
-            <span className="label-text">To:</span>
-            <span className="text-gray-900 font-bold">{selectedConversation.fullname}</span>
+            <span className="label-text text-blue-500 font-lg mr-1">To : </span>
+            <span className="text-white font-sm">{selectedConversation.fullname}</span>
           </div>
           <Messages />
           <MessageInput />

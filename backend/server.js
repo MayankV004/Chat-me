@@ -31,5 +31,4 @@ app.use("/api/users", userRoutes)
 
 server.listen(PORT, ()=>{
     connectDB();
-    console.log(`Server running on port ${PORT}`)
 })

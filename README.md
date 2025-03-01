@@ -5,6 +5,19 @@
 
 Chat Me is a modern real-time messaging application built with React, Node.js, and Socket.IO. It provides users with a seamless communication experience through instant messaging, real-time status updates, and a responsive design.
 
+## 👀 See Live
+
+### Login Screen
+![Login Screen](screenshots/login.png)
+### SignUp Screen
+![SignUp Screen](screenshots/signup.png)
+
+### Chat Interface
+![Chat Interface](screenshots/chat.png)
+
+### Chat Demo
+![Chat Interface](screenshots/chat1.png) ![Chat Interface](screenshots/chat2.png)
+
 
 ## ✨ Features
 
@@ -64,9 +77,8 @@ VITE_SERVER_URL=http://localhost:5000
 
 ## 🚀 Running the Application
 
-1. **Start the backend server**:
+1. **Start the backend server(In Root directory)**:
 ```bash
-cd backend
 npm run start
 ```
 

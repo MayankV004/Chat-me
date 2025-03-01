@@ -7,6 +7,14 @@ Chat Me is a modern real-time messaging application built with React, Node.js, a
 
 ## 👀 See Live
 
+Check out the live demo of the application:
+
+[Live Link](https://chat-me-prod.onrender.com)
+```bash
+https://chat-me-prod.onrender.com
+```
+
+
 ### Login Screen
 ![Login Screen](screenshots/login.png)
 ### SignUp Screen

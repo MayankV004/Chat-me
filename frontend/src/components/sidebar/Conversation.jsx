@@ -1,7 +1,7 @@
 import React from "react";
 import useConversation from "../../zustand/useConversation.js";
 
-import { useSocketContext } from "../../context/socketContext";
+import { useSocketContext } from "../../context/SocketContext";
 
 function Conversation({ conversation, emoji, lastIDX }) {
   const { selectedConversation, setSelectedConversation } = useConversation();

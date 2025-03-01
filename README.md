@@ -79,7 +79,7 @@ VITE_SERVER_URL=http://localhost:5000
 
 1. **Start the backend server(In Root directory)**:
 ```bash
-npm run start
+npm run server
 ```
 
 2. **Start the frontend development server**:

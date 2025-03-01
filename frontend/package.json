@@ -13,6 +13,7 @@
     "@shadcn/ui": "^0.0.4",
     "@tailwindcss/vite": "^4.0.0",
     "axios": "^1.7.9",
+    "chat-me": "file:..",
     "framer-motion": "^12.0.5",
     "motion": "^12.4.7",
     "react": "^18.3.1",

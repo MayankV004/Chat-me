@@ -1,7 +1,6 @@
 import conversation from "../models/conversation-model.js";
 import Message from "../models/message-model.js";
-import { getReceiverSocketId } from "../socket/socket.js";
-import { io } from "../socket/socket.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async(req,res)=>{
     try {
@@ -17,7 +16,6 @@ export const sendMessage = async(req,res)=>{
         {
             convo = await conversation.create({
                 participants: [senderID , receiverID ],
-
             })
         }
 
@@ -27,24 +25,28 @@ export const sendMessage = async(req,res)=>{
             message : message
         })
 
-        
         if(newMessage)
         {
             convo.messages.push(newMessage._id);
         }
-        await Promise.all([convo.save(),newMessage.save()]) // faster and run in parallel
-
-        const receiverSocketId = getReceiverSocketId(receiverID)
-
+        
+        // Save both the conversation and message
+        await Promise.all([convo.save(), newMessage.save()]);
+        
+        // Fetch the complete message with all fields populated
+        const populatedMessage = await Message.findById(newMessage._id);
+        
+        // Send to the receiver if they're online
+        const receiverSocketId = getReceiverSocketId(receiverID);
         if(receiverSocketId)
         {
-            // io.to(<socket_id>).emit() used to send events to specific client
-            io.to(receiverSocketId).emit("newMessage", newMessage);
+            io.to(receiverSocketId).emit("newMessage", populatedMessage);
         }
 
-        res.status(201).json(newMessage)
+        res.status(201).json(populatedMessage);
 
     } catch (error) {
+        console.error("Error in sendMessage:", error);
         res.status(400).json({
             status : "failed",
             message : error.message
@@ -62,10 +64,11 @@ export const getMessages = async(req, res)=>{
 
         // if no message is there
         if(!convo) return res.status(200).json([]);
-        const messages = convo.messages
+        const messages = convo.messages || [];
 
-        res.status(201).json(messages)
+        res.status(200).json(messages);
     } catch (error) {
+        console.error("Error in getMessages:", error);
         res.status(400).json({
             status : "failed",
             message : error.message

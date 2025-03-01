@@ -5,7 +5,7 @@ import io from "socket.io-client";
 export const SocketContext = createContext();
 
 export const useSocketContext = () => {
-    return useContext(SocketContext)
+    return useContext(SocketContext);
 }
 
 export const SocketContextProvider = ({ children }) => {
@@ -15,20 +15,36 @@ export const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (authUser) {
-      const socket = io("http://localhost:5000", {
+      // Use window.location.origin to dynamically determine the server URL
+      // This ensures it works in both development and production
+      const socketServerUrl = window.location.origin;
+      console.log("Connecting to socket server:", socketServerUrl);
+      
+      const newSocket = io(socketServerUrl, {
         query: { userId: authUser._id },
       });
   
-      setSocket(socket);
+      setSocket(newSocket);
+
+      // Log socket connection events
+      newSocket.on("connect", () => {
+        console.log("Socket connected successfully");
+      });
+
+      newSocket.on("connect_error", (err) => {
+        console.error("Socket connection error:", err);
+      });
 
       // Updating online users in the onlineUsers state
-      socket.on("getOnlineUsers" , (users) => {
+      newSocket.on("getOnlineUsers", (users) => {
+        console.log("Online users updated:", users);
         setOnlineUsers(users); 
       });
 
-
-
-      return () => socket.close();
+      return () => {
+        console.log("Closing socket connection");
+        newSocket.close();
+      };
     } else {
       if (socket) {
         socket.close();
